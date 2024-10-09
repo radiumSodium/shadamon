@@ -1,16 +1,66 @@
-# sadamon
+# shadamon
 
-A new Flutter project.
+A mobile app
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+### Folder structure of the project
 
-A few resources to get you started if this is your first Flutter project:
+lib/
+├── core/
+│   ├── constants/
+│   │   └── app_colors.dart
+│   │   └── app_text_styles.dart
+│   │   └── app_strings.dart
+│   ├── utils/
+│   │   └── validation.dart
+│   │   └── formatter.dart
+│   └── theme/
+│       └── app_theme.dart
+│
+├── data/
+│   ├── models/
+│   │   └── product_model.dart
+│   │   └── user_model.dart
+│   │   └── order_model.dart
+│   ├── repositories/
+│   │   └── product_repository.dart
+│   │   └── user_repository.dart
+│   ├── services/
+│       └── api_service.dart
+│       └── firebase_service.dart
+│       └── local_storage_service.dart
+│
+├── domain/
+│   ├── entities/
+│   │   └── product.dart
+│   │   └── user.dart
+│   └── usecases/
+│       └── get_products.dart
+│       └── place_order.dart
+│
+├── presentation/
+│   ├── screens/
+│   │   ├── product_list_screen.dart
+│   │   ├── cart_screen.dart
+│   │   ├── chat_screen.dart
+│   └── widgets/
+│       └── product_card.dart
+│       └── cart_icon.dart
+│
+├── state/
+│   ├── providers/
+│   │   └── cart_provider.dart
+│   │   └── user_provider.dart
+│   ├── cubits/
+│   │   └── product_cubit.dart
+│   │   └── order_cubit.dart
+│
+├── routes/
+│   └── app_router.dart
+│
+└── main.dart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## State Management 
+We are going to use either Provider or BLoC
+
