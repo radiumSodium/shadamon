@@ -4,7 +4,7 @@ A mobile app
 
 
 ### Folder structure of the project
-
+```bash
 lib/
 ├── core/
 │   ├── constants/
@@ -25,7 +25,7 @@ lib/
 │   └── cubits/
 ├── routes/
 └── main.dart
-
+```
 
 ## State Management 
 We are going to use either Provider or BLoC
