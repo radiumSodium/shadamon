@@ -14,8 +14,8 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      shape: const CircularNotchedRectangle(), // For curved notch in the middle
-      notchMargin: 8.0, // Margin around FAB
+      shape: const CircularNotchedRectangle(),
+      notchMargin: 10.0,
       color: Colors.white,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -31,11 +31,19 @@ class CustomNavBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(Icons.home, 'Home', 0),
-                _buildNavItem(Icons.search_rounded, 'Search', 1),
-                const SizedBox(width: 40), // Space for FAB in the middle
-                _buildNavItem(Icons.mail, 'Inbox', 2),
-                _buildNavItem(Icons.person, 'Account', 3),
+                Row(
+                  children: [
+                    _buildNavItem(Icons.home, 'Home', 0),
+                    _buildNavItem(Icons.search_rounded, 'Search', 1),
+                  ],
+                ),
+                const SizedBox(width: 40),
+                Row(
+                  children: [
+                    _buildNavItem(Icons.mail, 'Inbox', 2),
+                    _buildNavItem(Icons.person, 'Account', 3),
+                  ],
+                ),
               ],
             ),
           ),
@@ -45,7 +53,6 @@ class CustomNavBar extends StatelessWidget {
     );
   }
 
-  // Helper function to build each navigation item
   Widget _buildNavItem(IconData icon, String label, int index) {
     final isSelected = selectedIndex == index;
     return GestureDetector(
@@ -54,7 +61,7 @@ class CustomNavBar extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
         decoration: isSelected
             ? BoxDecoration(
-                color: Colors.grey[400], // Highlight for selected item
+                color: Colors.grey[300], // Highlight for selected item
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(15),
                   bottomRight: Radius.circular(15),

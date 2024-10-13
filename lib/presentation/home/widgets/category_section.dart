@@ -7,12 +7,21 @@ class CategorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      margin: const EdgeInsets.only(bottom: 2),
+      decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(20),
           bottomRight: Radius.circular(20),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2), // Shadow color
+            spreadRadius: 0, // Spread radius (0 to avoid expanding)
+            blurRadius: 10, // Softness of the shadow
+            offset: const Offset(0, 3), // Offset only in the bottom direction
+          ),
+        ],
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(

@@ -16,28 +16,25 @@ class TopBar extends StatelessWidget {
           ),
         ),
       ),
-      // Match background color
       child: Padding(
         padding: const EdgeInsets.symmetric(
             horizontal: 16.0, vertical: 8.0), // Reduced vertical padding
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // Left side: Shadamon title and product info
             const Row(
               children: [
                 Text(
-                  'Shadamon', // Logo-like text
+                  'Shadamon',
                   style: TextStyle(
                       fontSize: 20,
                       color: AppColors.logoOrange,
-                      fontWeight: FontWeight.bold), // Reduced font size
+                      fontWeight: FontWeight.bold), // Logo style
                 ),
-                SizedBox(width: 8), // Reduced spacing
+                SizedBox(width: 8),
                 Text('|',
-                    style: TextStyle(
-                      fontSize: 24,
-                      color: Colors.black12,
-                    )), // Smaller separator
+                    style: TextStyle(fontSize: 24, color: Colors.black12)),
                 SizedBox(width: 8),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,34 +56,42 @@ class TopBar extends StatelessWidget {
                 ),
               ],
             ),
+            // Right side: Language switch and notification buttons
             Row(
               children: [
-                ElevatedButton.icon(
-                  onPressed: () {
-                    // Language switch action
-                  },
-                  // Smaller icon
-                  label: const Text('বাংলা',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.black,
-                      )), // Smaller text
-                  style: ElevatedButton.styleFrom(
-                    elevation: 1.0,
-                    backgroundColor: AppColors.selectedLogoBG,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 2, vertical: 2), // Compact button
+                // Language Switch Button
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0, vertical: 6.0), // Padding for text
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300], // Gray background
+                    borderRadius: BorderRadius.circular(12), // Rounded corners
+                  ),
+                  child: const Row(
+                    children: [
+                      Text(
+                        'বাংলা',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.black,
+                        ), // Text style for language
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(width: 8),
-                IconButton(
-                  color: Colors.black,
 
-                  onPressed: () {
-                    // Notification button action
-                  },
-                  icon:
-                      const Icon(Icons.notifications, size: 20), // Smaller icon
+                Container(
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: const Icon(
+                    Icons.notifications,
+                    size: 16,
+                    color: Colors.black, // Icon color
+                  ),
                 ),
               ],
             ),

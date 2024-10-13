@@ -4,7 +4,6 @@ import 'package:sadamon/presentation/screens/account_screen.dart';
 import 'package:sadamon/presentation/screens/home_screen.dart';
 import 'package:sadamon/presentation/screens/inbox_screen.dart';
 import 'package:sadamon/presentation/screens/search_screen.dart';
-import '../../core/constraints/app_colors.dart';
 import './widgets/top_bar.dart';
 import '../../core/utils/custom_nav_bar.dart';
 
@@ -34,7 +33,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgGrey,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
           children: [
@@ -49,14 +48,16 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Colors.orange,
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add_outlined,
+          size: 48,
+        ),
       ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.centerDocked, // Center the FAB
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CustomNavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
-      ), // Custom bottom nav bar with notch
+      ),
     );
   }
 }

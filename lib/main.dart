@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sadamon/core/constraints/app_colors.dart';
 import 'package:sadamon/presentation/home/home_page.dart';
-import 'package:sadamon/presentation/screens/login_scree.dart';
-
-import 'package:sadamon/presentation/screens/signup_screen.dart';
 
 void main() {
   runApp(const MyApp());
