@@ -1,119 +1,74 @@
 import 'package:flutter/material.dart';
+import '../../presentation/home/widgets/bottom_widget.dart';
 
-class CustomNavBar extends StatefulWidget {
-  const CustomNavBar({super.key});
+class CustomNavBar extends StatelessWidget {
+  final int selectedIndex;
+  final Function(int) onItemTapped;
 
-  @override
-  _CustomNavBarState createState() => _CustomNavBarState();
-}
-
-class _CustomNavBarState extends State<CustomNavBar> {
-  int _selectedIndex = 0; // Track the selected tab index
+  const CustomNavBar({
+    super.key,
+    required this.selectedIndex,
+    required this.onItemTapped,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      shape:
-          const CircularNotchedRectangle(), // For the curved notch in the middle
-      notchMargin: 10.0, // Reduced notch margin for a tighter layout
-      color: Colors.white, // White background for the navbar
-      child: Container(
-        height: 56, // Reduced height for a more compact look
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Row(
+      shape: const CircularNotchedRectangle(), // For curved notch in the middle
+      notchMargin: 8.0, // Margin around FAB
+      color: Colors.white,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            height: 56,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20),
+                topRight: Radius.circular(20),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _buildNavItem(Icons.home, 'Home', 0),
                 _buildNavItem(Icons.search_rounded, 'Search', 1),
-              ],
-            ),
-            Container(width: 20),
-            Row(
-              children: [
-                _buildNavItem(Icons.mail, ' Inbox ', 2),
+                const SizedBox(width: 40), // Space for FAB in the middle
+                _buildNavItem(Icons.mail, 'Inbox', 2),
                 _buildNavItem(Icons.person, 'Account', 3),
               ],
             ),
-          ],
-        ),
+          ),
+          const bottom_widget(),
+        ],
       ),
     );
   }
 
   // Helper function to build each navigation item
   Widget _buildNavItem(IconData icon, String label, int index) {
-    final isSelected = _selectedIndex == index;
-
+    final isSelected = selectedIndex == index;
     return GestureDetector(
-      onTap: () {
-        setState(() {
-          _selectedIndex = index; // Update the selected index
-        });
-      },
+      onTap: () => onItemTapped(index),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
-        height:
-            56, // Ensure the selected item's height matches the navbar height
         decoration: isSelected
             ? BoxDecoration(
-                color:
-                    Colors.grey[300], // Gray background for the selected item
+                color: Colors.grey[400], // Highlight for selected item
                 borderRadius: const BorderRadius.only(
                   bottomLeft: Radius.circular(15),
                   bottomRight: Radius.circular(15),
                 ),
               )
-            : null, // No decoration for unselected items
+            : null,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              color: Colors.black, // Icon color
-            ),
-            Text(
-              label,
-              style: const TextStyle(
-                color: Colors.black, // Text color
-              ),
-            ),
+            Icon(icon, color: Colors.black),
+            Text(label, style: const TextStyle(color: Colors.black)),
           ],
         ),
       ),
-    );
-  }
-}
-
-class CustomNavBarScreen extends StatelessWidget {
-  const CustomNavBarScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: const Center(
-        child: Text('Custom NavBar Screen'),
-      ),
-      floatingActionButton: SizedBox(
-        height: 70, // Increase FAB height
-        width: 70, // Increase FAB width
-        child: FloatingActionButton(
-          onPressed: () {
-            // Action for FAB
-          },
-          backgroundColor: Colors.orange, // FAB color
-          child: const Icon(Icons.add, size: 30), // Larger icon for the FAB
-        ),
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.centerDocked, // FAB in the center
-      bottomNavigationBar: const CustomNavBar(),
     );
   }
 }

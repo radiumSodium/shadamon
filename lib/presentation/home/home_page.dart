@@ -1,49 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:sadamon/presentation/home/widgets/category_section.dart';
+import 'package:sadamon/presentation/screens/account_screen.dart';
+import 'package:sadamon/presentation/screens/home_screen.dart';
+import 'package:sadamon/presentation/screens/inbox_screen.dart';
+import 'package:sadamon/presentation/screens/search_screen.dart';
 import '../../core/constraints/app_colors.dart';
 import './widgets/top_bar.dart';
-import './widgets/category_section.dart';
 import '../../core/utils/custom_nav_bar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    const HomeScreen(),
+    const SearchScreen(),
+    const InboxScreen(),
+    const AccountScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgGrey,
-      body: const SafeArea(
+      body: SafeArea(
         child: Column(
           children: [
-            // Custom top bar
-            TopBar(),
-            CategorySection(), // Category, Location, and Save Search
+            const TopBar(), // Custom TopBar
+            const CategorySection(), // Category Section
             Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      // Placeholder for scrollable content like cards
-                      Text('Scrollable body content'),
-                    ],
-                  ),
-                ),
-              ),
+              child: _screens[_selectedIndex], // Display selected screen
             ),
           ],
         ),
       ),
-      bottomNavigationBar: const CustomNavBar(), // Custom bottom nav bar
       floatingActionButton: FloatingActionButton(
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30.0))),
+        onPressed: () {},
         backgroundColor: Colors.orange,
-        onPressed: () {
-          // Action for Add button
-        },
-        child: const Icon(Icons.add, color: Colors.white, size: 36.0),
+        child: const Icon(Icons.add),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.centerDocked, // Center the FAB
+      bottomNavigationBar: CustomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
+      ), // Custom bottom nav bar with notch
     );
   }
 }
